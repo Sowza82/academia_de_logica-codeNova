@@ -1,26 +1,27 @@
-const products = [
-  { id: 1, name: "Notebook", price: 1200, category: "Eletrônicos" },
-  { id: 2, name: "Camiseta", price: 25, category: "Vestuário" },
-  { id: 3, name: "Cafeteira", price: 100, category: "Cozinha" },
-  { id: 4, name: "Fones de Ouvido", price: 80, category: "Eletrônicos" },
-  { id: 5, name: "Calça Jeans", price: 45, category: "Vestuário" },
-]
+// 1. Função que adiciona isAdult ao objeto
+function addIsAdult(person) {
+  return {
+    ...person,
+    isAdult: person.age >= 18
+  };
+}
 
-const productDescriptions = products.map(product => `${product.name} - ${product.category}`)
-console.log("Descrições dos Produtos:")
-console.log(productDescriptions)
+// 2. Função que combina múltiplos arrays usando rest e spread
+function combineArrays(...arrays) {
+  return arrays.flat();
+  // Ou, se preferir fazer sem flat:
+  // return [].concat(...arrays);
+}
 
-const pricesWithTax = products.map(product => ({
-  ...product,
-  priceWithTax: (product.price * 1.15).toFixed(2)
-}))
-console.log("\nProdutos com Imposto (15%):")
-pricesWithTax.forEach(product => {
-  console.log (`${product.name} - R$${product.priceWithTax}`)
-})
+// Testando a parada
+const person1 = { name: "João", age: 20 };
+const person2 = { name: "Ana", age: 15 };
 
-let totalValue = 0
-products.forEach(product => {
-  totalValue += product.price
-})
-console.log(`\nValor total dos produtos: R$${totalValue.toFixed(2)}`)
+console.log(addIsAdult(person1)); // { name: 'João', age: 20, isAdult: true }
+console.log(addIsAdult(person2)); // { name: 'Ana', age: 15, isAdult: false }
+
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5];
+const arr3 = [6, 7, 8];
+
+console.log(combineArrays(arr1, arr2, arr3)); // [1, 2, 3, 4, 5, 6, 7, 8]
